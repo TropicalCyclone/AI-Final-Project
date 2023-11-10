@@ -50,6 +50,7 @@ public class HS_ProjectileMover : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Lock all axes movement and rotation
+        if(rb != null)
         rb.constraints = RigidbodyConstraints.FreezeAll;
         speed = 0;
 
