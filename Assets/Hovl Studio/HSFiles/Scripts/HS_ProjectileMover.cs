@@ -8,6 +8,8 @@ public class HS_ProjectileMover : MonoBehaviour
     public float hitOffset = 0f;
     public bool UseFirePointRotation;
     public Vector3 rotationOffset = new Vector3(0, 0, 0);
+    private float _damage; 
+    public float Damage { get { return _damage; } set { _damage = value; } }
     public GameObject hit;
     public GameObject flash;
     private Rigidbody rb;
@@ -65,7 +67,12 @@ public class HS_ProjectileMover : MonoBehaviour
             if (UseFirePointRotation) { hitInstance.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
             else if (rotationOffset != Vector3.zero) { hitInstance.transform.rotation = Quaternion.Euler(rotationOffset); }
             else { hitInstance.transform.LookAt(contact.point + contact.normal); }
+            NewAiBehaviour aiScript = collision.gameObject.GetComponent<NewAiBehaviour>();
 
+            if (aiScript != null && _damage > 0)
+            {
+                aiScript.TakeDamage(_damage);
+            }
             //Destroy hit effects depending on particle Duration time
             var hitPs = hitInstance.GetComponent<ParticleSystem>();
             if (hitPs != null)
@@ -77,6 +84,7 @@ public class HS_ProjectileMover : MonoBehaviour
                 var hitPsParts = hitInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
                 Destroy(hitInstance, hitPsParts.main.duration);
             }
+            
         }
 
         //Removing trail from the projectile on cillision enter or smooth removing. Detached elements must have "AutoDestroying script"
