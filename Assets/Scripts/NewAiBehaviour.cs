@@ -35,7 +35,15 @@ public class NewAiBehaviour : MonoBehaviour
     public new string tag = "Team1";
     [Header("VFX")]
     public GameObject Arrow;
+    public GameObject MageBlast;
     public Transform spawnArcherFX;
+    public Transform MageShotSpawn;
+
+    private GameObject _bullet;
+    private Transform _spawnPoint;
+    private bool runOnce;
+    public Transform SpawnPoint { get { return _spawnPoint; } }
+    public GameObject Bullet { get { return _bullet; } }
     // Start is called before the first frame update
     void Start()
     {
@@ -50,20 +58,28 @@ public class NewAiBehaviour : MonoBehaviour
         switch (aiTypes)
         {
             case AI_Types.Archer:
+                _bullet = Arrow;
+                _spawnPoint = spawnArcherFX;
                 _health = GameManager.Instance.archerHealth;
                 range = GameManager.Instance.archerRange;
+                _damage = GameManager.Instance.archerDamage;
                 break;
             case AI_Types.Warrior:
                 _health = GameManager.Instance.warriorHealth;
                 range = GameManager.Instance.meleeRange;
+                _damage = GameManager.Instance.warriorDamage;
                 break;
             case AI_Types.Mage:
+                _bullet = MageBlast;
+                _spawnPoint = MageShotSpawn;
                 _health = GameManager.Instance.mageHealth;
                 range = GameManager.Instance.mageRange;
+                _damage = GameManager.Instance.mageDamage;
                 break;
             case AI_Types.Ninja:
                 _health = GameManager.Instance.ninjaHealth;
                 range = GameManager.Instance.ninjaRange;
+                _damage = GameManager.Instance.ninjaDamage;
                 break;
             default:
                 break;
@@ -71,12 +87,31 @@ public class NewAiBehaviour : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        if(_health <= 0)
+        {
+            if(!runOnce)
+            animator.SetTrigger("isDeath");
+            runOnce = true;
+        }
+    }
     public float Health { get { return _health; } }
     
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
-        _health += damageAmount;
+        Debug.Log(aiModel + " Got damaged " + damageAmount + " HP! " + _health + " HP Remaining.");
+        if (_health > 0)
+        {
+            _health -= damageAmount;
+        }
+        if(_health <= 0)
+        {
+            _health = 0;
+            animator.SetBool("isDead",true);
+        }
     }
+
 
     private void Update()
     {
