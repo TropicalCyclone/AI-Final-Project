@@ -7070,7 +7070,7 @@ MonoBehaviour:
   - {fileID: 1952740647534759928}
   animator: {fileID: 0}
   agent: {fileID: 0}
-  range: 1
+  range: 0
   health: 0
   damage: 0
   tag: Team1
