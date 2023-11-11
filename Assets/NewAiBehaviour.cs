@@ -54,6 +54,8 @@ public class NewAiBehaviour : MonoBehaviour
                 range = GameManager.Instance.archerRange;
                 break;
             case AI_Types.Warrior:
+                health = GameManager.Instance.warriorHealth;
+                range = GameManager.Instance.meleeRange;
                 break;
             case AI_Types.Mage:
                 break;
