@@ -30,8 +30,8 @@ public class NewAiBehaviour : MonoBehaviour
     [Header("AttackRange")]
     public float range;
     [Header("EnemyValues")]
-    public float health;
-    public float damage;
+    public float _health;
+    public float _damage;
     public new string tag = "Team1";
     [Header("VFX")]
     public GameObject Arrow;
@@ -50,23 +50,32 @@ public class NewAiBehaviour : MonoBehaviour
         switch (aiTypes)
         {
             case AI_Types.Archer:
-                health = GameManager.Instance.archerHealth;
+                _health = GameManager.Instance.archerHealth;
                 range = GameManager.Instance.archerRange;
                 break;
             case AI_Types.Warrior:
-                health = GameManager.Instance.warriorHealth;
+                _health = GameManager.Instance.warriorHealth;
                 range = GameManager.Instance.meleeRange;
                 break;
             case AI_Types.Mage:
+                _health = GameManager.Instance.mageHealth;
+                range = GameManager.Instance.mageRange;
                 break;
             case AI_Types.Ninja:
-                health = GameManager.Instance.ninjaHealth;
+                _health = GameManager.Instance.ninjaHealth;
                 range = GameManager.Instance.ninjaRange;
                 break;
             default:
                 break;
         }
 
+    }
+
+    public float Health { get { return _health; } }
+    
+    public void TakeDamage(int damageAmount)
+    {
+        _health += damageAmount;
     }
 
     private void Update()

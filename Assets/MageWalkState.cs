@@ -21,7 +21,7 @@ public class MageWalkState : StateMachineBehaviour
         {
             // Check if the GameObject is within the radius
             float distance = Vector3.Distance(aiBehaviour.agent.transform.position, nearestGameObject.transform.position);
-            if (distance <= aiBehaviour.range || aiBehaviour.agent.velocity == Vector3.zero)
+            if (distance <= aiBehaviour.range)
             {
                 aiBehaviour.agent.speed = 0;
                 animator.SetBool("isWalking", false);
