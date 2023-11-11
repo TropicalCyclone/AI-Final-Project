@@ -420,11 +420,11 @@ Transform:
   m_GameObject: {fileID: 693439842}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 1.14, y: 1.88, z: -4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 368943930157835572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &809978781
 GameObject:
@@ -521,12 +521,15 @@ MonoBehaviour:
   mageHealth: 12
   archerHealth: 12
   warriorHealth: 12
+  ninjaHealth: 0
   mageDamage: 12
   archerDamage: 12
   warriorDamage: 12
+  ninjaDamage: 0
   meleeRange: 1
   archerRange: 10
   mageRange: 3
+  ninjaRange: 0
 --- !u!4 &945674218
 Transform:
   m_ObjectHideFlags: 0
@@ -3549,7 +3552,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &482195381674681306
 GameObject:
   m_ObjectHideFlags: 0
@@ -6673,6 +6676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1268226812858745bfb08e56db1f13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &3156437335232291072
 GameObject:
   m_ObjectHideFlags: 0
@@ -6966,7 +6970,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3250569721574744305, guid: 56aa874a74f03c741909e5643346857f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5721670134733338906, guid: 56aa874a74f03c741909e5643346857f, type: 3}
       propertyPath: m_IsActive
@@ -7026,6 +7030,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7520387442731568049, guid: 56aa874a74f03c741909e5643346857f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1952740647534400024}
+    - targetCorrespondingSourceObject: {fileID: 7520387442731568049, guid: 56aa874a74f03c741909e5643346857f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 693439845}
     - targetCorrespondingSourceObject: {fileID: 6335383261223358009, guid: 56aa874a74f03c741909e5643346857f, type: 3}
       insertIndex: 1
       addedObject: {fileID: 5298220397741258426}
@@ -7056,19 +7063,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 
-  aiTypes: 0
+  aiTypes: 1
   aiModel:
   - {fileID: 3146312807501240024}
   - {fileID: 482195381674681304}
   - {fileID: 1952740647534759928}
   animator: {fileID: 0}
   agent: {fileID: 0}
-  spawnArcherFX: {fileID: 1608609890}
-  range: 0
+  range: 1
   health: 0
   damage: 0
   tag: Team1
   Arrow: {fileID: 1699459221867030, guid: 281aabf73dcc5844faf849b3dc30c1aa, type: 3}
+  spawnArcherFX: {fileID: 1608609890}
 --- !u!195 &4302256514600324137
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7952,7 +7959,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 693439845}
   - {fileID: 1305945822}
   - {fileID: 337855611}
   - {fileID: 1379643039}
