@@ -30,6 +30,7 @@ public class MeeleeEvent : MonoBehaviour
             }
             else
             {
+                if(_enemyInRange)
                 _enemyInRange.TakeDamage(aiBehaviour._damage);
             }
         }

@@ -15,8 +15,8 @@ public class WarriorAttackState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject nearestGameObject = GameObject.FindWithTag(aiBehaviour.tag);
-        if (nearestGameObject != null)
+        NewAiBehaviour nearestGameObject = FindClosestEnemy();
+        if (nearestGameObject != null && !nearestGameObject.GetComponent<NewAiBehaviour>().IsDead)
         {
             // Check if the GameObject is within the radius
             float distance = Vector3.Distance(aiBehaviour.agent.transform.position, nearestGameObject.transform.position);
@@ -27,6 +27,25 @@ public class WarriorAttackState : StateMachineBehaviour
                 aiBehaviour.agent.speed = 3.5f;
             }
         }
+    }
+
+    NewAiBehaviour FindClosestEnemy()
+    {
+        NewAiBehaviour closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (NewAiBehaviour enemy in aiBehaviour.Enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(aiBehaviour.transform.position, enemy.transform.position);
+
+            if (distanceToEnemy < closestDistance && enemy.gameObject.tag == aiBehaviour.tag && enemy.isActiveAndEnabled)
+            {
+                closestDistance = distanceToEnemy;
+                closestEnemy = enemy;
+            }
+        }
+
+        return closestEnemy;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -38,10 +38,14 @@ public class NewAiBehaviour : MonoBehaviour
     public GameObject MageBlast;
     public Transform spawnArcherFX;
     public Transform MageShotSpawn;
-
     private GameObject _bullet;
     private Transform _spawnPoint;
-    private bool runOnce;
+    private bool _isDead;
+
+    [SerializeField] private NewAiBehaviour[] _enemies;
+
+    public NewAiBehaviour[] Enemies { get { return _enemies; } }    
+    public bool IsDead { get { return _isDead; } }
     public Transform SpawnPoint { get { return _spawnPoint; } }
     public GameObject Bullet { get { return _bullet; } }
     // Start is called before the first frame update
@@ -54,6 +58,8 @@ public class NewAiBehaviour : MonoBehaviour
             animator = aiModel[aiModelIndices[aiType]].GetComponent<Animator>();
         };
         activateAiModel(aiTypes);
+
+        _enemies = FindObjectsByType<NewAiBehaviour>(FindObjectsSortMode.InstanceID);
 
         switch (aiTypes)
         {
@@ -91,10 +97,17 @@ public class NewAiBehaviour : MonoBehaviour
     {
         if(_health <= 0)
         {
-            if(!runOnce)
-            animator.SetTrigger("isDeath");
-            runOnce = true;
+            if (!_isDead)
+                StartCoroutine(dying());
+            _isDead = true;
         }
+    }
+
+    private IEnumerator dying()
+    {
+        animator.SetTrigger("isDeath");
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
     }
     public float Health { get { return _health; } }
     
