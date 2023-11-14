@@ -3276,13 +3276,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693439842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.29631618, y: 0.73593813, z: -0.22737226, w: 0.5647068}
-  m_LocalPosition: {x: 25.4, y: 10.5, z: -4.6}
+  m_LocalRotation: {x: 0.49530855, y: -0, z: -0, w: 0.86871713}
+  m_LocalPosition: {x: 49.4, y: 92.5, z: -55.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 42.015, y: 110.387, z: 13.968}
+  m_LocalEulerAnglesHint: {x: 59.38, y: 0, z: 0}
 --- !u!1001 &694098159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4203,9 +4203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85dd61f3607c74349a3111ea14ef38c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mageHealth: 12
+  mageHealth: 18
   archerHealth: 12
-  warriorHealth: 12
+  warriorHealth: 24
   ninjaHealth: 12
   mageDamage: 12
   archerDamage: 12
